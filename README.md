@@ -15,3 +15,9 @@ Compile the slides to PDF using [typst](https://github.com/typst/typst):
 ```
 typst c lecture_1_slides.typ
 ```
+
+## PDFs
+
+Or, if you don't want to compile, look at the [releases](https://github.com/zeroeightysix/tt-lectures/releases):
+
+* Lecture 1 [PDF](https://github.com/zeroeightysix/tt-lectures/releases/download/1/lecture_1_slides.pdf)
