@@ -1,16 +1,59 @@
-// University theme
+// Haute école de la province de liege theme
 
 // Originally contributed by Pol Dellaiera - https://github.com/drupol
+// Modified by Ridan Vandenbergh
+// Modified by Andrea Spelgatti -> Some color scheme extracted from the template of Guilain Ernotte from the University of Liège
 
 #import "@preview/touying:0.5.3": *
 #import "custom-outline.typ": custom-outline
 #import "@preview/showybox:2.0.1" as mod-showybox
 #import "@preview/curryst:0.3.0" as curryst: rule
 
-#let primary-color = green.darken(60%)
-#let secondary-color = green.darken(40%)
-#let tertiary-color = green.darken(30%)
-#let text-color = black.transparentize(20%)
+
+#let HEPLColors = (
+  beige-super-pale:   rgb("#e8e8e3"),
+  rouge-prv:          rgb("#CC0033"),
+  jaune-prv:          rgb("#F6A800"),
+  jaune-fonce-hepl:   rgb("#be7f00"),
+  bleu-hepl:          rgb("#0080a0"),
+  bleu-clair-hepl:    rgb("#8abcc8"),
+  bleu-clair-darker-hepl:    rgb("#294e57"),
+  bleu-fonce-hepl:    rgb("#002b4f"),
+)
+// Uliège colors (from official graphic chart).
+#let Uliege = (
+  TealDark:  rgb(000, 112, 127),
+  TealLight: rgb(095, 164, 176),
+  // Beige gray scale.
+  BeigeLight: rgb(232, 226, 222),
+  BeigePale:  rgb(230, 230, 225),
+  BeigeDark:  rgb(198, 192, 180),
+  // Faculty colors.
+  Yellow:        rgb(255, 208, 000),
+  OrangeLight:   rgb(248, 170, 000),
+  OrangeDark:    rgb(240, 127, 060),
+  Red:           rgb(230, 045, 049),
+  GreenPale:     rgb(185, 205, 118),
+  GreenLight:    rgb(125, 185, 040),
+  Green:         rgb(040, 155, 056),
+  GreenDark:     rgb(000, 132, 059),
+  BlueLight:     rgb(031, 186, 219),
+  BlueDark:      rgb(000, 092, 169),
+  LavenderDark:  rgb(091, 087, 162),
+  LavenderLight: rgb(141, 166, 214),
+  PurpleLight:   rgb(168, 088, 158),
+  PurpleDark:    rgb(091, 037, 125),
+  GrayDark:      rgb(140, 139, 130),
+  GrayLight:     rgb(181, 180, 169),
+)
+
+#let primary-color = HEPLColors.rouge-prv
+#let secondary-color = HEPLColors.jaune-prv
+#let tertiary-color = HEPLColors.jaune-prv
+#let text-color = HEPLColors.bleu-clair-darker-hepl
+#let text-color-light = HEPLColors.bleu-clair-hepl
+
+
 
 #let todo(content: text(style: "oblique")[TODO]) = box(stroke: 2pt + red, content)
 #let smc(content) = text(font: "Linux Libertine", smallcaps[#content])
@@ -33,13 +76,15 @@
   body-color: secondary-color.transparentize(80%),
   border-color: color.luma(100%, 0%),
 )
+
 #let showybox = mod-showybox.showybox.with(
   frame: showybox-frame-style,
   body-style: (
     color: text-color,
   ),
 )
-#let definition(of-thing, content) = { 
+
+#let definition(of-thing, content) = {
   showybox(
     frame: showybox-frame-style + (border-color: primary-color),
     title-style: (
@@ -60,6 +105,7 @@
   #set align(center)
   #content
 ]
+
 #let inf-style(body) = {
   show "zero": $mono("zero")$
   show "suc": $bold("suc")$
@@ -112,6 +158,7 @@
 ///   If you want to customize the composer, you can pass a function to the `composer` argument. The function should receive the contents of the slide and return the content of the slide, like `#slide(composer: grid.with(columns: 2))[A][B]`.
 ///
 /// - `..bodies` is the contents of the slide. You can call the `slide` function with syntax like `#slide[A][B][C]` to create a slide.
+
 #let slide(
   config: (:),
   repeat: auto,
@@ -200,12 +247,19 @@
     }
   }
   let body = {
-    if info.logo != none {
-      place(right, text(fill: self.colors.primary, info.logo))
-    }
+    place(top + right, dx: 6cm, dy: -5.5cm,
+      rotate(30deg,
+        polygon.regular(
+          fill:HEPLColors.rouge-prv,
+          size: 13.5cm,
+          vertices: 5,
+        )
+      )
+    )
     align(
       center + horizon,
       {
+        image("figures/g2.svg", height: 3cm)
         block(
           inset: 0em,
           breakable: false,
@@ -272,7 +326,6 @@
         it
       }
     )
-    
     body
   }
   self = utils.merge-dicts(
@@ -335,7 +388,6 @@
   )
   touying-slide(self: self, composer: components.checkerboard.with(columns: columns, rows: rows), ..bodies)
 })
-
 
 /// Touying university theme.
 ///
@@ -411,16 +463,15 @@
       init: (self: none, body) => {
         set text(fill: self.colors.neutral-darkest, size: 22pt)
         show heading: set text(fill: self.colors.primary)
-  
         body
       },
       alert: utils.alert-with-primary-color,
     ),
     config-colors(
-      primary: green.darken(60%),
-      secondary: green.darken(40%),
-      tertiary: green.darken(30%),
-      neutral-lightest: rgb("#ffffff"),
+      primary: primary-color,
+      secondary: secondary-color,
+      tertiary: tertiary-color,
+      neutral-lightest:  Uliege.BeigeLight,
       neutral-darkest: text-color,
     ),
     // save the variables for later use
