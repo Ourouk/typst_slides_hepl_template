@@ -429,6 +429,7 @@
 #let university-theme(
   aspect-ratio: "16-9",
   progress-bar: true,
+  bibliography-file: none,
   header: utils.display-current-heading(level: 2),
   header-right: self => utils.display-current-heading(level: 1) + h(.3em) + self.info.logo,
   footer-columns: (25%, 1fr, 25%),
@@ -488,4 +489,10 @@
   )
 
   body
+
+  if bibliography-file != none {
+    pagebreak()
+    show bibliography: set text(0.9em)
+    bibliography(bibliography-file, full: false, style: "ieee",title: "Bibliographie")
+  }
 }
