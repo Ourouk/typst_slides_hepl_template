@@ -1,5 +1,5 @@
-#import "@preview/touying:0.5.3": *
-#import "@preview/curryst:0.3.0" as curryst: rule
+#import "@preview/touying:0.6.1": *
+#import "@preview/curryst:0.5.1" as curryst: rule
 
 #import "theme.typ": *
 
