@@ -4,11 +4,10 @@
 // Modified by Ridan Vandenbergh
 // Modified by Andrea Spelgatti -> Some color scheme extracted from the template of Guilain Ernotte from the University of Liège
 
-#import "@preview/touying:0.5.3": *
+#import "@preview/touying:0.6.1": *
 #import "custom-outline.typ": custom-outline
-#import "@preview/showybox:2.0.1" as mod-showybox
-#import "@preview/curryst:0.3.0" as curryst: rule
-
+#import "@preview/showybox:2.0.4" as mod-showybox
+#import "@preview/curryst:0.5.1" as curryst: rule
 
 #let HEPLColors = (
   beige-super-pale:   rgb("#e8e8e3"),
@@ -119,7 +118,7 @@
   body
 }
 
-#let proof-tree = curryst.proof-tree.with(prem-min-spacing: 2em, stroke: 0.8pt)
+#let proof-tree = curryst.prooftree.with(min-premise-spacing: 2em, stroke: 0.8pt)
 #let inf-rules(
   inset: 10%,
   ..formulas
@@ -315,7 +314,7 @@
 
     custom-outline(
       title: none,
-      fill: none,
+      //fill: none,
       filter: hd => hd.relation != none and not hd.relation.unrelated,
       depth: 2,
       transform: (hd, it) => {
@@ -427,9 +426,9 @@
 /// )
 /// ```
 #let university-theme(
+  bibliography-file: none,
   aspect-ratio: "16-9",
   progress-bar: true,
-  bibliography-file: none,
   header: utils.display-current-heading(level: 2),
   header-right: self => utils.display-current-heading(level: 1) + h(.3em) + self.info.logo,
   footer-columns: (25%, 1fr, 25%),
@@ -490,9 +489,11 @@
 
   body
 
+    // Print the bibliography.
   if bibliography-file != none {
     pagebreak()
     show bibliography: set text(0.9em)
     bibliography(bibliography-file, full: false, style: "ieee",title: "Bibliographie")
   }
+}
 }
