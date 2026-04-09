@@ -1,23 +1,25 @@
-# Type theory lectures
-
-This repo hosts the slides I have made to accompany my intermittent lectures on dependent type theory.
-
-I am not a professor or anyone qualified to teach type theory; these lectures are entirely a learning tool for myself to better understand the theory (by teaching it to my mildly-interested friends).
-For more correct and thorough reading material on type theory, please refer to the books I've based my lectures on:
-
-* The [lecture notes](https://www.danielgratzer.com/courses/type-theory-s-2024/lecture-notes.pdf) of Carlo Angiuli and Daniel Gratzer's [course on Modern Dependent Type Theory](https://www.danielgratzer.com/courses/type-theory-s-2024/).
-* _The_ Homotopy Type Theory book: [HoTT](https://homotopytypetheory.org/book/)
+# Template to make presentation for HEPL Student
+This repo host a template that permit to create easily slides from written report in typst.
 
 ## Compiling
 
 Compile the slides to PDF using [typst](https://github.com/typst/typst):
 
 ```
-typst c lecture_1_slides.typ
+typst c slides.typ
 ```
 
-## PDFs
+## How to present your pdf slides
 
-Or, if you don't want to compile, look at the [releases](https://github.com/zeroeightysix/tt-lectures/releases):
+Usual pdf reader have a presentation mode :
 
-* Lecture 1 [PDF](https://github.com/zeroeightysix/tt-lectures/releases/download/1/lecture_1_slides.pdf)
+Chrome and firefox have it under expending menu present or presenting button.
+
+Or if your used to use terminal, you can use pdfpc to present
+https://pdfpc.github.io/
+
+
+### Thanks
+Originally contributed by Pol Dellaiera - https://github.com/drupol
+Modified by Ridan Vandenbergh -> https://github.com/zeroeightysix/
+Some color scheme extracted from the template of Guilain Ernotte for the University of Liège -> https://github.com/QUICKguils
